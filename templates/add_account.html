@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- FIXED viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Add Account</title>
+
+    <style>
+        /* Global reset */
+        *{
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body{
+            margin: 0;
+            min-height: 100vh;
+            background: #000;
+        }
+
+        /* Animated gradient background */
+        .cover{
+            min-height: 100vh;
+            padding: 2rem 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: linear-gradient(
+                120deg,
+                #24c6dc,
+                #514a9d,
+                #ff512f,
+                #dd2476
+            );
+            background-size: 300% 300%;
+            animation: gradientMove 10s ease infinite;
+        }
+
+        @keyframes gradientMove{
+            0%{ background-position: 0% 50%; }
+            50%{ background-position: 100% 50%; }
+            100%{ background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism card */
+        .maindiv{
+            width: 90%;
+            max-width: 500px;
+
+            padding: 2.5rem 2rem;
+
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1{
+            color: white;
+            font-size: clamp(2.5rem, 7vw, 4rem);
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        form{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        /* Inputs */
+        input{
+            width: 100%;
+            min-height: 3.2rem;
+            padding: 0 1.2rem;
+
+            font-size: 1rem;
+            color: white;
+
+            border-radius: 999px;
+            border: none;
+            outline: none;
+
+            background: rgba(0,0,0,0.55);
+
+            transition: 
+                background 0.3s ease,
+                box-shadow 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        input::placeholder{
+            color: #ddd;
+        }
+
+        input:focus{
+            background: rgba(0,0,0,0.75);
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.25);
+            transform: scale(1.02);
+        }
+
+        /* Button */
+        button{
+            width: 100%;
+            min-height: 3.2rem;
+
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+
+            background: linear-gradient(
+                90deg,
+                #24c6dc,
+                #514a9d,
+                #24c6dc
+            );
+            background-size: 200% 200%;
+            animation: buttonGlow 3s linear infinite;
+
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        @keyframes buttonGlow{
+            0%{ background-position: 0% 50%; }
+            100%{ background-position: 200% 50%; }
+        }
+
+        button:hover{
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .footer{
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: white;
+            text-align: center;
+        }
+
+        .footer a{
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .footer a:hover{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cover">
+        <div class="maindiv">
+            <h1>Create Account</h1>
+
+            <form method="post" action="{{ url_for('add_account') }}">
+                <!-- FIXED input type -->
+                <input type="text" name="username" placeholder="Enter username" required>
+                <input type="password" name="password" placeholder="Enter password" required>
+                <button type="submit">CREATE</button>
+            </form>
+
+            <div class="footer">
+                Already have an account?
+                <a href="{{ url_for('login') }}">Login</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
