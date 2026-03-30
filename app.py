@@ -81,7 +81,7 @@ def chat(room):
     chats = cur.fetchall()
     return render_template("chat.html",room=room,user_id=user_id,chats=chats)
 @socketio.on("join_room")
-def handle_ join_room(data):
+def handle_join_room(data):
     room = data["room"]
     join_room(room)
     print("joined room:"+room)
