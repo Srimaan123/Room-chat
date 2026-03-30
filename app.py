@@ -33,7 +33,7 @@ def init_db():
     db.commit()
     db.close()
 
-socketio = SocketIO(app,async_mode='threading')
+socketio = SocketIO(app,async_mode='gevent',cors_allowed_origins="*")
 
 @app.route("/",methods=["GET","POST"])
 def login():
@@ -81,7 +81,7 @@ def chat(room):
     chats = cur.fetchall()
     return render_template("chat.html",room=room,user_id=user_id,chats=chats)
 @socketio.on("join_room")
-def handle_join_room(data):
+def handle_ join_room(data):
     room = data["room"]
     join_room(room)
     print("joined room:"+room)
